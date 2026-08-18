@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Contato | PetAdote{% endblock %}
+
+{% block content %}
+    <section class="content-width section contact-grid">
+        <div class="ds-form-card">
+            <h1>Envie uma mensagem</h1>
+            <p>Tem alguma dúvida sobre os pets ou sobre como adotar? Escreva pra gente.</p>
+            <form method="post" action="{% url 'contato' %}" class="ds-form">
+                {% csrf_token %}
+                {% if form.non_field_errors %}<div class="ds-form-errors">{{ form.non_field_errors }}</div>{% endif %}
+                {% for field in form %}
+                    <div class="ds-field">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span aria-hidden="true">*</span>{% endif %}</label>
+                        {{ field }}
+                        {% for error in field.errors %}<p class="ds-field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="ds-button">Enviar mensagem</button>
+            </form>
+        </div>
+        <aside class="contact-side">
+            <div class="contact-panel">
+                <h2>Sobre este canal</h2>
+                <p>As mensagens enviadas por este formulário são registradas no PetAdote e podem ser consultadas pela equipe administrativa.</p>
+                <div class="contact-list">
+                    <div class="contact-item"><strong>Início</strong><span>Novembro de 2025</span></div>
+                    <div class="contact-item"><strong>Entrega</strong><span>Agosto de 2026</span></div>
+                    <div class="contact-item"><strong>Projeto</strong><span>Requisitos, modelagem, front-end e back-end</span></div>
+                </div>
+            </div>
+        </aside>
+    </section>
+{% endblock %}

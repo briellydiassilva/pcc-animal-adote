@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#123d27">
+    <title>{% block title %}PetAdote{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'design-system.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="{% url 'home' %}" class="site-brand" aria-label="PetAdote — página inicial">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span>petadote</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Navegação principal">
+                <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="is-active"{% endif %}>Início</a>
+                <a href="{% url 'quero_adotar' %}" {% if request.resolver_match.app_name == 'animais' %}class="is-active"{% endif %}>Animais</a>
+                <a href="{% url 'vacinacao' %}" {% if request.resolver_match.url_name == 'vacinacao' %}class="is-active"{% endif %}>Vacinação</a>
+                <a href="{% url 'sobre' %}" {% if request.resolver_match.url_name == 'sobre' %}class="is-active"{% endif %}>Sobre</a>
+                <a href="{% url 'contato' %}" {% if request.resolver_match.url_name == 'contato' %}class="is-active"{% endif %}>Contato</a>
+                <a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}class="is-active"{% endif %}>Dashboard</a>
+            </nav>
+
+            <div class="account-nav">
+                {% if user.is_authenticated %}
+                    {% if user.perfil == 'CLIENTE' %}
+                        <a href="{% url 'adocoes:minhas' %}" class="header-link header-client">Minhas adoções</a>
+                    {% endif %}
+                    {% if user.is_staff %}
+                        <a href="{% url 'admin:index' %}" class="header-link header-admin">Administração</a>
+                    {% endif %}
+                    <a href="{% url 'usuarios:perfil' %}" class="profile-chip" title="Abrir meu perfil">
+                        <span class="profile-avatar">{% if user.foto_perfil_url %}<img src="{{ user.foto_perfil_url }}" alt="">{% else %}{{ user.get_short_name|first|upper }}{% endif %}</span>
+                        <span>Olá, {{ user.get_short_name }}</span>
+                    </a>
+                    <form method="post" action="{% url 'usuarios:logout' %}" class="inline-form">
+                        {% csrf_token %}
+                        <button type="submit" class="button-link danger-link">Sair</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'usuarios:login' %}" class="header-link header-login">Entrar</a>
+                    <a href="{% url 'usuarios:cadastro' %}" class="ds-button ds-button-small">Cadastrar</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    {% if messages %}
+        <div class="global-messages" aria-live="polite">
+            {% for message in messages %}
+                <p class="global-message global-message-{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main id="conteudo-principal" class="site-main {% block main_class %}{% endblock %}">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <a href="{% url 'home' %}" class="site-brand footer-brand">
+                    <span class="brand-mark" aria-hidden="true"></span>
+                    <span>petadote</span>
+                </a>
+                <p>Projeto desenvolvido entre novembro de 2025 e agosto de 2026 para simplificar processos de adoção e promover o bem-estar animal com segurança e tecnologia.</p>
+            </div>
+            <nav aria-label="Links da plataforma"><strong>Plataforma</strong><a href="{% url 'sobre' %}">Como funciona</a><a href="{% url 'quero_adotar' %}">Quero adotar</a><a href="{% url 'contato' %}">Enviar mensagem</a></nav>
+            <nav aria-label="Links institucionais"><strong>Institucional</strong><a href="{% url 'sobre' %}">Sobre o projeto</a><a href="{% url 'dashboard' %}">Indicadores do sistema</a><a href="{% url 'vacinacao' %}">Guia de vacinação</a><a href="{% url 'contato' %}">Contato</a></nav>
+            <div class="footer-bottom"><span>PetAdote · Entrega final em agosto de 2026</span><span>Projeto colaborativo de desenvolvimento de software</span></div>
+        </div>
+    </footer>
+</body>
+</html>

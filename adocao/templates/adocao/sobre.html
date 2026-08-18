@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sobre nós | PetAdote{% endblock %}
+
+{% block content %}
+    <section class="about-hero section">
+        <div class="content-width about-hero-grid">
+            <div>
+                <span class="eyebrow-ds">Quem somos</span>
+                <h1 class="page-title">Conectando vidas, transformando destinos.</h1>
+                <p class="lead">Desenvolvido entre novembro de 2025 e agosto de 2026, o PetAdote transforma levantamento de requisitos, modelagem e implementação em uma plataforma funcional para apoiar a adoção responsável.</p>
+            </div>
+            <img src="{% static 'adocao/images/Hero-Illustration.png' %}" alt="Equipe PetAdote cuidando dos animais">
+        </div>
+    </section>
+
+    <section class="surface-section section about-development-section">
+        <div class="content-width about-development">
+            <div>
+                <span class="eyebrow-ds">Nosso projeto</span>
+                <h2>Desenvolvimento do PetAdote</h2>
+            </div>
+            <div class="about-development-copy">
+                <p>O desenvolvimento da plataforma PetAdote é fruto de uma jornada intensa e colaborativa que teve início em novembro de 2025, quando definimos os primeiros conceitos, a arquitetura e o escopo do projeto. Ao longo desse período, trabalhamos em equipe de forma alinhada para transformar ideias em uma solução funcional e intuitiva.</p>
+                <p>Entre a concepção dos protótipos e a implementação completa do sistema, cada integrante desempenhou um papel fundamental no levantamento de requisitos, modelagem do banco de dados e desenvolvimento do front-end e back-end. A culminância dessa dedicação se deu em agosto de 2026, com a entrega final de uma plataforma estruturada para conectar vidas, simplificar processos de adoção e promover o bem-estar animal com segurança e tecnologia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="soft-section section">
+        <div class="content-width">
+            <div class="section-heading-ds section-heading-centered"><div><h2>Nossos Valores</h2><p>Os pilares que guiam todas as nossas decisões e conexões diárias.</p></div></div>
+            <div class="value-grid">
+                <article class="ds-card"><span class="ds-card-icon">◇</span><h3>Transparência</h3><p>Apresentamos de forma clara os dados cadastrados de animais, saúde, vacinação e solicitações.</p></article>
+                <article class="ds-card"><span class="ds-card-icon">⌁</span><h3>Responsabilidade</h3><p>Estruturamos o fluxo para registrar, analisar e acompanhar cada solicitação de adoção.</p></article>
+                <article class="ds-card"><span class="ds-card-icon">♡</span><h3>Amor pelos animais</h3><p>Usamos a tecnologia para apoiar a adoção responsável e promover o bem-estar animal.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="soft-section section">
+        <div class="content-width">
+            <div class="section-heading-ds section-heading-centered"><div><h2>Equipe do Projeto</h2><p>Conheça as pessoas responsáveis pelo desenvolvimento e pela orientação do PetAdote.</p></div></div>
+            <div class="team-grid">
+                <article class="team-card">
+                    <img class="team-photo" src="{% static 'adocao/images/lara-vitoria-almeida-ferreira.png' %}" alt="Lara Vitória Almeida Ferreira">
+                    <h3>Lara Vitória Almeida Ferreira</h3>
+                    <p>Desenvolvedora</p>
+                </article>
+                <article class="team-card">
+                    <img class="team-photo" src="{% static 'adocao/images/gustavo-oliveira-tolentino.png' %}" alt="Gustavo Oliveira Tolentino">
+                    <h3>Gustavo Oliveira Tolentino</h3>
+                    <p>Desenvolvedor</p>
+                </article>
+                <article class="team-card">
+                    <img class="team-photo" src="{% static 'adocao/images/gabrielly-dias-da-silva.png' %}" alt="Gabrielly Dias da Silva">
+                    <h3>Gabrielly Dias da Silva</h3>
+                    <p>Desenvolvedora</p>
+                </article>
+                <article class="team-card">
+                    <img class="team-photo" src="{% static 'adocao/images/welinson-de-brito-dos-santos-batista.png' %}" alt="Welinson de Brito dos Santos Batista">
+                    <h3>Welinson de Brito dos Santos Batista</h3>
+                    <p>Professor orientador</p>
+                </article>
+            </div>
+        </div>
+    </section>
+{% endblock %}
